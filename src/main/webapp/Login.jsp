@@ -67,9 +67,12 @@
                     Don't have an account?
                     <a class="text-amber-500 hover:underline" href="#" onclick="showRegistrationOptions(event)">Register Now.</a>
                 </h3>
-                <h3 class=" max-w-[400px] mx-auto text-center">
-                    <a class="text-amber-500 hover:underline" href="Forgot.jsp">Forgot Password?</a>
-                </h3>
+                <div class="max-w-[400px] mx-auto text-center">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="remember_me" value="on" class="form-checkbox h-4 w-4 text-amber-500">
+                        <span class="ml-2 text-gray-700">Remember Me</span>
+                    </label>
+                </div>
             </div>
         </div>
     </div>

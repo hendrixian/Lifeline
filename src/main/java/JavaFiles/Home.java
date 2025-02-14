@@ -1,8 +1,5 @@
 package JavaFiles;
 
-import java.lang.System;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.io.IOException;
 import java.io.Serial;
 import java.sql.Connection;
@@ -12,15 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import static JavaFiles.Forgot.LOGGER;
 
-@WebServlet("/Home")
+
 public class Home extends HttpServlet {
 
     @Serial
@@ -36,13 +31,18 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
+        //  String username = (String) session.getAttribute("loggedInUser");  // For user
+        //String representative = (String) session.getAttribute("loggedInRepresentative");  //
         String username = (String) session.getAttribute("username");
-        LOGGER.info("The retrieved username is : "+username);
         // Redirect to login page if the session has expired or the user is not logged in
         if (username == null) {
             response.sendRedirect("Login.jsp");
             return;
         }
+        // if (username == null && representative == null) {
+        //  response.sendRedirect("Login.jsp");
+        //  return;
+        //   }
 
         // Attempt to find the username in the 'user' or 'representative' table
         String userType = getUserTypeFromDatabase(username);
@@ -59,10 +59,11 @@ public class Home extends HttpServlet {
             if (userType.equals("user")) {
                 request.getRequestDispatcher("Profile_user.jsp").forward(request, response);
             } else if (userType.equals("representative")) {
-                request.getRequestDispatcher("Profile_rep.jsp").forward(request, response);
+                request.getRequestDispatcher("Location_Profile.jsp").forward(request, response);
             }
         }
     }
+
 
     /**
      * This method checks the database to determine the type of user based on the username.

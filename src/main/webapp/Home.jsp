@@ -19,6 +19,10 @@
 </head>
 
 <body>
+<%
+    String loggedInUser = (String) session.getAttribute("loggedInUser");
+    String loggedInRepresentative = (String) session.getAttribute("loggedInRepresentative");
+%>
 <!-- Start of Navbar -->
 <div class="fixed top-0 left-0 right-0 z-50 border-b-[1px] bg-amber-500">
 
@@ -45,11 +49,27 @@
             </div>
 
             <!-- user icon  -->
+
             <div class="flex justify-center items-center text-[18px]">
+                <%-- Show profile button for User --%>
+                <% if (loggedInUser != null) { %>
                 <div class="tooltip tooltip-left" data-tip="Profile">
-                    <a href="Profile.jsp" class="hover:text-white transition duration-300">
-                        <i class="fa-regular fa-circle-user"></i>
+                    <a href="Profile_user.jsp" class="hover:text-white transition duration-300">
+                        <i class="fa-regular fa-circle-user text-[40px]"></i>
                     </a>
+                    <% } %>
+                    <%-- Show profile button for Representative --%>
+                    <% if (loggedInRepresentative != null) { %>
+                    <a href="Location_Profile.jsp" class="hover:text-[#F17829] transition duration-300">
+                        <i class="fa-regular fa-circle-user text-[40px] "></i>
+                    </a>
+                    <% } %>
+                    <%-- Show Login button if no one is logged in --%>
+                    <% if (loggedInUser == null && loggedInRepresentative == null) { %>
+                    <a href="Login.jsp" class="hover:text-[#F17829] transition duration-300">
+                        <i class="fa-regular fa-circle-user text-[40px]"></i>
+                    </a>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -87,10 +107,27 @@
                 </a>
 
             </div>
+
             <div class="navbar-end">
-                <a href="Profile.jsp" class="hover:text-[#F17829] transition duration-300">
+                <%-- Show profile button for User --%>
+                <% if (loggedInUser != null) { %>
+                <a href="Profile_user.jsp" class="hover:text-[#F17829] transition duration-300">
                     <i class="fa-regular fa-circle-user text-[40px]"></i>
                 </a>
+                <% } %>
+                <%-- Show profile button for Representative --%>
+                <% if (loggedInRepresentative != null) { %>
+                <a href="Location_Profile.jsp" class="hover:text-[#F17829] transition duration-300">
+                    <i class="fa-regular fa-circle-user text-[40px] "></i>
+                </a>
+                <% } %>
+                <%-- Show Login button if no one is logged in --%>
+                <% if (loggedInUser == null && loggedInRepresentative == null) { %>
+                <a href="Login.jsp" class="hover:text-[#F17829] transition duration-300">
+                    <i class="fa-regular fa-circle-user  text-[40px]"></i>
+                </a>
+                <% } %>
+
             </div>
         </div>
     </div>
@@ -214,7 +251,7 @@
         </a>
 
         <!-- Card-3 -->
-        <a data-aos="zoom-in-right" href="Profile.jsp"
+        <a data-aos="zoom-in-right" href="Profile_user.jsp"
            class="delay-200 group relative block bg-[#F2F2F2] rounded-tl-lg rounded-br-lagrge rounded-tr-3xl rounded-bl-3xl hover:bg-[#d9d9d9] transition-all duration-300">
             <div class="relative p-4 sm:p-6 lg:p-8">
                 <!-- icon -->
@@ -282,7 +319,7 @@
 
                     <div class="avatar">
                         <div class="max-h-[120px] w-auto rounded-xl">
-                            <img src="IMAGES/edmslogo.jpeg" />
+                            <img src="IMAGES/photo_2025-01-26_22-02-41.jpg" />
                         </div>
                     </div>
                     <div class="flex flex-col gap-1">
@@ -336,7 +373,7 @@
             </a>
             <h3 class='text-[16px] text-[#7B7B7B] text-center'>EDMS - Your comprehensive resource for shelter,
                 assistance, and information during times of crisis</h3>
-            <h3 class='text-[16px] text-[#868686] text-center'>&copy; 2023 EDMS. All rights reserved.</h3>
+            <h3 class='text-[16px] text-[#868686] text-center'>&copy; 2025 EDMS. All rights reserved.</h3>
         </div>
 
         <div class='hidden md:flex flex-col items-center justify-center gap-3 border-[1px] p-8 min-w-[250px]'>
@@ -346,12 +383,12 @@
         </div>
     </div>
     <!-- End of Footer -->
-</div>
+
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
-</body>
+</div></body>
 
 </html>
